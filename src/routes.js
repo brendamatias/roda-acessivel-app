@@ -26,10 +26,10 @@ export default (isSigned = false) =>
           {
             tabBarOptions: {
               keyboardHidesTabBar: true,
-              activeTintColor: '#FFF',
-              inactiveTintColor: 'rgba(255,255,255,0.6)',
+              activeTintColor: '#01bdbc',
+              inactiveTintColor: 'rgba(0,0,0,0.4)',
               style: {
-                backgroundColor: '#2AB7D8',
+                backgroundColor: '#fff',
               },
             },
           }
