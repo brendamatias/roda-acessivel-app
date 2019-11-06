@@ -45,6 +45,6 @@ export const Div = styled.View`
 export const Info = styled.Text`
   flex-direction: row;
   align-items: center;
-  font-size: 11px;
+  font-size: ${props => (props.size ? props.size : 12)};
   color: #999999;
 `;

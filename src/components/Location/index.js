@@ -5,6 +5,7 @@ import { Container, File, Body, Top, Title, Div, Info } from './styles';
 
 export default function Location({ data }) {
   const [color, setColor] = useState([]);
+  const [accessibility, setAccessibility] = useState([]);
 
   function returnAccessibility(location) {
     let accessibility =
@@ -14,6 +15,8 @@ export default function Location({ data }) {
       parseInt(location.bathroom_note, 10);
 
     accessibility /= 4;
+
+    setAccessibility(accessibility);
 
     if (accessibility >= 4) {
       return '#2D9900';
@@ -26,6 +29,27 @@ export default function Location({ data }) {
     }
 
     return '#C1C1C1';
+  }
+
+  function returnParameters(accessibility) {
+    /* Acessível */
+    if (accessibility >= 4) {
+      return 'ACESSÍVEL';
+    }
+
+    /* Parcialmente Acessível */
+    if (accessibility > 2) {
+      return 'PARCIALMENTE ACESSÍVEL';
+    }
+
+    /* Não Acessível */
+    if (accessibility > 0) {
+      return 'NÃO ACESSÍVEL';
+    }
+
+    /* Não Avaliado */
+
+    return 'NÃO AVALIADO';
   }
 
   useEffect(() => {
@@ -44,7 +68,7 @@ export default function Location({ data }) {
           <Title>{data.name}</Title>
           <Info>{data.category.name}</Info>
         </Top>
-        <Info>Acessível</Info>
+        <Info size={10}>{returnParameters(accessibility)}</Info>
       </Body>
       <Div>
         <Icon name="accessible" size={60} color={color} />
