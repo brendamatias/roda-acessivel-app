@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text } from 'react-native';
 import api from '~/services/api';
 
 import Header from '~/components/Header';
+import Loading from '~/components/Loading';
 import Location from '~/components/Location';
 
 import { Container, List } from './styles';
@@ -50,7 +50,7 @@ export default function Dashboard({ navigation }) {
     <>
       <Header navigation={navigation} />
       <Container>
-        {loading && <Text>Loading</Text>}
+        {loading && <Loading />}
 
         {locations.length ? (
           <List
@@ -71,7 +71,7 @@ export default function Dashboard({ navigation }) {
 }
 
 Dashboard.navigationOptions = {
-  tabBarLabel: 'Categorias',
+  tabBarLabel: 'Dashboard',
   tabBarIcon: ({ tintColor }) => (
     <Icon name="dashboard" size={20} color={tintColor} />
   ),
