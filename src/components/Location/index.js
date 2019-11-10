@@ -3,27 +3,29 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, File, Body, Top, Title, Div, Info } from './styles';
 
-export default function Location({ data }) {
+export default function Location({ data, handleDetails }) {
   const [color, setColor] = useState([]);
   const [accessibility, setAccessibility] = useState([]);
 
   function returnAccessibility(location) {
-    let accessibility =
+    let grade =
       parseInt(location.entry_note, 10) +
       parseInt(location.parking_note, 10) +
       parseInt(location.circulation_note, 10) +
       parseInt(location.bathroom_note, 10);
 
-    accessibility /= 4;
+    grade /= 4;
 
-    setAccessibility(accessibility);
+    setAccessibility(grade);
 
     if (accessibility >= 4) {
       return '#2D9900';
     }
+
     if (accessibility > 2) {
       return '#EAD300';
     }
+
     if (accessibility >= 1) {
       return '#9E0000';
     }
@@ -54,10 +56,10 @@ export default function Location({ data }) {
 
   useEffect(() => {
     setColor(returnAccessibility(data));
-  }, [data]);
+  }, [data, returnAccessibility]);
 
   return (
-    <Container>
+    <Container onPress={handleDetails}>
       <File
         source={{
           uri: data.image.url,
@@ -68,7 +70,7 @@ export default function Location({ data }) {
           <Title>{data.name}</Title>
           <Info>{data.category.name}</Info>
         </Top>
-        <Info size={10}>{returnParameters(accessibility)}</Info>
+        <Info size={10}>{returnParameters()}</Info>
       </Body>
       <Div>
         <Icon name="accessible" size={60} color={color} />

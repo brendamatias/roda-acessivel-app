@@ -14,11 +14,12 @@ export const List = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
 })``;
 
-export const Categories = styled.View.attrs({
-  flex: 1,
-  flexDirection: 'column',
+export const Locations = styled.View.attrs({
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
 })`
-  display: flex;
+  padding-top: 20px;
 `;
 
 export const Card = styled.View.attrs({

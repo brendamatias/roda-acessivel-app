@@ -6,7 +6,7 @@ import Header from '~/components/Header';
 import Loading from '~/components/Loading';
 import Location from '~/components/Location';
 
-import { Container, List } from './styles';
+import { Container, List, Locations } from './styles';
 
 export default function Dashboard({ navigation }) {
   const [loading, setLoading] = useState(true);
@@ -51,20 +51,26 @@ export default function Dashboard({ navigation }) {
       <Header navigation={navigation} />
       <Container>
         {loading && <Loading />}
-
-        {locations.length ? (
-          <List
-            data={locations}
-            keyExtractor={item => String(item.id)}
-            renderItem={({ item }) => <Location data={item} />}
-            onRefresh={handleRefresh}
-            refreshing={refreshing}
-            onEndReached={() => hasMore && setPage(page + 1)}
-            onEndReachedThreshold={0.2}
-          />
-        ) : (
-          <></>
-        )}
+        <Locations>
+          {locations.length ? (
+            <List
+              data={locations}
+              keyExtractor={item => String(item.id)}
+              renderItem={({ item }) => (
+                <Location
+                  data={item}
+                  handleDetails={() => navigation.navigate('Details', { item })}
+                />
+              )}
+              onRefresh={handleRefresh}
+              refreshing={refreshing}
+              onEndReached={() => hasMore && setPage(page + 1)}
+              onEndReachedThreshold={0.2}
+            />
+          ) : (
+            <></>
+          )}
+        </Locations>
       </Container>
     </>
   );

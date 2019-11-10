@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View.attrs({
+export const Container = styled(RectButton).attrs({
   elevation: 2,
 })`
   background: #fff;
