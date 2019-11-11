@@ -8,32 +8,18 @@ export default function Location({ data, handleDetails }) {
   const [accessibility, setAccessibility] = useState([]);
 
   function returnAccessibility(location) {
-    let grade =
+    let accessibilityValue =
       parseInt(location.entry_note, 10) +
       parseInt(location.parking_note, 10) +
       parseInt(location.circulation_note, 10) +
       parseInt(location.bathroom_note, 10);
 
-    grade /= 4;
+    accessibilityValue /= 4;
 
-    setAccessibility(grade);
-
-    if (accessibility >= 4) {
-      return '#2D9900';
-    }
-
-    if (accessibility > 2) {
-      return '#EAD300';
-    }
-
-    if (accessibility >= 1) {
-      return '#9E0000';
-    }
-
-    return '#C1C1C1';
+    setAccessibility(accessibilityValue);
   }
 
-  function returnParameters(accessibility) {
+  function returnParameters() {
     /* Acessível */
     if (accessibility >= 4) {
       return 'ACESSÍVEL';
@@ -54,9 +40,24 @@ export default function Location({ data, handleDetails }) {
     return 'NÃO AVALIADO';
   }
 
+  function returnColor(available) {
+    if (available >= 4) {
+      return '#2D9900';
+    }
+    if (available > 2) {
+      return '#EAD300';
+    }
+    if (available >= 1) {
+      return '#9E0000';
+    }
+
+    return '#C1C1C1';
+  }
+
   useEffect(() => {
-    setColor(returnAccessibility(data));
-  }, [data, returnAccessibility]);
+    returnAccessibility(data);
+    setColor(returnColor(accessibility));
+  }, [accessibility, data, returnAccessibility]);
 
   return (
     <Container onPress={handleDetails}>

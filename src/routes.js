@@ -12,8 +12,10 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
 import Details from './pages/Details';
+import Evaluation from './pages/Evaluation';
+
+import Profile from './pages/Profile';
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -27,7 +29,7 @@ export default (isSigned = false) =>
           {
             Dashboard: {
               screen: createStackNavigator(
-                { Dashboard, Details },
+                { Dashboard, Details, Evaluation },
                 {
                   defaultNavigationOptions: {
                     headerTransparent: true,

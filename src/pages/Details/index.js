@@ -91,8 +91,6 @@ export default function Details({ navigation }) {
     setBathroom(returnColor(bathroom_note));
   }, [accessibility, location]);
 
-  function handleSubmit() {}
-
   return (
     <>
       <Header navigation={navigation} />
@@ -128,7 +126,11 @@ export default function Details({ navigation }) {
             </Div>
           </Section>
 
-          <SubmitButton onPress={handleSubmit}>Avaliar</SubmitButton>
+          <SubmitButton
+            onPress={() => navigation.navigate('Evaluation', { location })}
+          >
+            Avaliar
+          </SubmitButton>
 
           <Accessibility>
             <InfoAccessibility>
