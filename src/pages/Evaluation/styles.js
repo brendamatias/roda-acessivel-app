@@ -13,6 +13,7 @@ export const Body = styled.View.attrs({})`
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   padding: 30px;
+  margin-bottom: 15px;
 `;
 
 export const Title = styled.Text`
@@ -40,7 +41,6 @@ export const Note = styled.View``;
 export const Label = styled.Text``;
 
 export const SubmitButton = styled(Button)`
-  margin-top: 15px;
   background: #f64c75;
   width: 100%;
 `;

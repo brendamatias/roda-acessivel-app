@@ -16,8 +16,10 @@ import {
 import api from '~/services/api';
 
 import Header from '~/components/Header';
+import Loading from '~/components/Loading';
 
 export default function Evaluation({ navigation }) {
+  const [loading, setLoading] = useState(true);
   const { id } = navigation.getParam('location');
 
   const [entry, setEntry] = useState();
@@ -32,6 +34,8 @@ export default function Evaluation({ navigation }) {
         message: 'Necessário preenchimento de todas as avaliações',
       });
     } else {
+      setLoading(true);
+
       const response = await api.post('evaluations', {
         entry_note: entry,
         parking_note: parking,
@@ -40,12 +44,9 @@ export default function Evaluation({ navigation }) {
         location_id: id,
       });
 
-      const { success } = response.data;
+      setLoading(false);
 
-      showMessage({
-        type: 'success',
-        message: success || 'Avaliação registrada com sucesso!',
-      });
+      const { success } = response.data;
 
       showMessage({
         type: 'success',
@@ -270,7 +271,11 @@ export default function Evaluation({ navigation }) {
           </Note>
         </Body>
 
-        <SubmitButton onPress={handleSubmit}>Avaliar</SubmitButton>
+        {loading ? (
+          <SubmitButton onPress={handleSubmit}>Avaliar</SubmitButton>
+        ) : (
+          <Loading />
+        )}
       </Container>
     </>
   );
