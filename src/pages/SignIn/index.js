@@ -9,6 +9,7 @@ import { signInRequest } from '~/store/modules/auth/actions';
 
 import {
   Container,
+  Title,
   Form,
   FormInput,
   SubmitButton,
@@ -33,6 +34,7 @@ export default function SignIn({ navigation }) {
     <Background>
       <Container>
         <Image source={logo} />
+        <Title>Roda Acessível</Title>
         <Form>
           <FormInput
             icon="mail-outline"

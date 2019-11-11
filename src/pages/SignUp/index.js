@@ -10,6 +10,7 @@ import { signUpRequest } from '~/store/modules/auth/actions';
 import {
   Container,
   Form,
+  Title,
   FormInput,
   SubmitButton,
   SignLink,
@@ -36,6 +37,7 @@ export default function SignUp({ navigation }) {
     <Background>
       <Container>
         <Image source={logo} />
+        <Title>Roda Acessível</Title>
         <Form>
           <FormInput
             icon="person-outline"
